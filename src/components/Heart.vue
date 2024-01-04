@@ -1,5 +1,5 @@
 <template>
-  <svg width="25" height="1rem" viewBox="0 0 256 256">
+  <svg width="38" height="1.25rem" viewBox="0 0 256 256">
     <g class="heart">
       <path
         d="M232 94c0 66-104 122-104 122S24 160 24 94a54 54 0 0 1 54-54c22.59 0 41.94 12.31 50 32c8.06-19.69 27.41-32 50-32a54 54 0 0 1 54 54"
@@ -34,6 +34,6 @@
 .heart {
   fill: color(primary);
   transform-origin: center;
-  animation: heartbeat 1.2s ease infinite 0s;
+  animation: heartbeat 1.3s ease infinite 0s;
 }
 </style>

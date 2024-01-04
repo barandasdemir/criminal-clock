@@ -15,27 +15,28 @@
 
       <p class="title text-overline mb-10">Criminal Clock</p>
 
-      <p class="text-subtitle-2 text-center font-weight-light">Inspired by the show</p>
-      <strong class="text-center text-subtitle-2 mb-10">Criminal UK/Germany/Spain/France</strong>
+      <p class="text-center font-weight-light">Inspired by the show</p>
+      <strong class="text-center text-subtitle-1 mb-10">Criminal UK/Germany/Spain/France</strong>
 
       <v-spacer />
 
-      <p class="d-flex align-center justify-center text-caption text-center mb-1">
+      <p class="d-flex align-center justify-center text-center mb-1">
         Made with
         <Heart />
       </p>
 
-      <p class="text-caption text-center mb-5">
-        Baran D. (<a
+      <div class="credits">
+        <p>Baran D.</p>
+        <span>|</span>
+        <a
           href="https://fledra.dev"
           target="_blank"
           rel="noopener noreferrer"
           class="text-decoration-none text-primary font-weight-bold"
         >
-          https://fledra.dev
+          fledra.dev
         </a>
-        )
-      </p>
+      </div>
 
       <v-btn variant="tonal" @click="hide">Close</v-btn>
     </div>
@@ -66,5 +67,12 @@ whenever(() => !props.show, hide);
 .title {
   text-align: center;
   font-size: 1.5rem !important;
+}
+
+.credits {
+  display: inline-flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
 }
 </style>
