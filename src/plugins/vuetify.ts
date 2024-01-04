@@ -9,17 +9,17 @@ export const vuetify = createVuetify({
     themes: {
       dark: {
         colors: {
-          background: '#121517',
-          surface: '#121517',
-          primary: '#98C6DD',
-          success: '#55AA71',
-          warning: '#DC6504',
-          info: '#98C6DD',
-          error: '#F36868',
+          background: '#030203',
+          surface: '#030203',
+          primary: '#ed0104',
+          success: '#55aa71',
+          warning: '#dc6504',
+          info: '#98c6dd',
+          error: '#f36868',
 
           // custom colors
-          dark: '#121517',
-          light: '#FFFFFF',
+          dark: '#030203',
+          light: '#ffffff',
         },
       },
     },
