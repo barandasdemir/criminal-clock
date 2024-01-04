@@ -1,10 +1,16 @@
 <template>
   <v-app>
-    <v-main>
+    <v-main ref="mainEl">
       <Clock />
+      <Drawer :show="inFocus" />
     </v-main>
   </v-app>
 </template>
+
+<script setup lang="ts">
+const mainEl = ref<HTMLElement>();
+const inFocus = useElementHover(mainEl);
+</script>
 
 <style lang="scss">
 * {
