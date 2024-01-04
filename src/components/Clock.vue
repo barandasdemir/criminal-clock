@@ -21,16 +21,30 @@
         class="outer"
       />
     </svg>
+
+    <div class="segments">
+      <Segment v-for="(seg, i) in time.hour" :key="`hour-${i}`" :value="seg" :radius="dotRadius" />
+
+      <div class="seperator" :class="{ active: time.millis <= 500 }"></div>
+
+      <Segment v-for="(seg, i) in time.minute" :key="`min-${i}`" :value="seg" :radius="dotRadius" />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import type { Digit } from '@/types';
+
 const { width, height } = useWindowSize();
 
 const radius = computed(() => (width.value > height.value ? height.value : width.value) / 2.3);
 const dotRadius = computed(() => radius.value / 64);
+const dotSize = computed(() => `${dotRadius.value * 2}px`);
+
 const now = useDateFormat(useNow(), 'HHmmssSSS');
 const time = computed(() => ({
+  hour: now.value.slice(0, 2).split('') as Digit[],
+  minute: now.value.slice(2, 4).split('') as Digit[],
   second: Number(now.value.slice(4, 6)),
   millis: Number(now.value.slice(-3)),
 }));
@@ -53,6 +67,34 @@ circle {
   transform: rotate(270deg);
   transform-origin: center center;
 }
+
+.segments {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+}
+
+.seperator {
+  @include flex-center;
+  @include margin-x(calc(v-bind(dotSize) * 5));
+
+  flex-direction: column;
+  width: v-bind(dotSize);
+  gap: 25%;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    width: v-bind(dotSize);
+    height: v-bind(dotSize);
+    background-color: rgba(color(primary), 0.1);
+    border-radius: 50%;
+  }
+}
+
 .active {
   fill: color(primary);
 
