@@ -1,5 +1,6 @@
 @use 'vuetify/settings' with (
   $color-pack: false,
+  $body-font-family: #{'Oswald', sans-serif},
 
   // Buttons
   $button-colored-disabled: false,
