@@ -1,6 +1,8 @@
 <template>
   <v-app>
-    <v-main> hello world! </v-main>
+    <v-main>
+      <Clock />
+    </v-main>
   </v-app>
 </template>
 
