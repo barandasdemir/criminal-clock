@@ -41,13 +41,18 @@ const radius = computed(() => (width.value > height.value ? height.value : width
 const dotRadius = computed(() => radius.value / 64);
 const dotSize = computed(() => `${dotRadius.value * 2}px`);
 
-const now = useDateFormat(useNow(), 'HHmmssSSS');
+const now = useNow();
+const titleTime = useDateFormat(now, 'HH:mm:ss');
+const clockTime = useDateFormat(now, 'HHmmssSSS');
+
 const time = computed(() => ({
-  hour: now.value.slice(0, 2).split('') as Digit[],
-  minute: now.value.slice(2, 4).split('') as Digit[],
-  second: Number(now.value.slice(4, 6)),
-  millis: Number(now.value.slice(-3)),
+  hour: clockTime.value.slice(0, 2).split('') as Digit[],
+  minute: clockTime.value.slice(2, 4).split('') as Digit[],
+  second: Number(clockTime.value.slice(4, 6)),
+  millis: Number(clockTime.value.slice(-3)),
 }));
+
+useTitle(titleTime, { titleTemplate: '%s | Criminal Clock' });
 </script>
 
 <style lang="scss" scoped>
