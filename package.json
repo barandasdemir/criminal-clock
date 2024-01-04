@@ -2,12 +2,15 @@
   "name": "criminal-clock",
   "version": "1.0.0",
   "author": "Baran D. <0xbaran@proton.me> (https://fledra.dev)",
+  "type": "module",
   "contributors": [],
   "engines": {
     "node": ">=18",
     "pnpm": ">=8"
   },
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "prepare": "husky install",
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
@@ -36,6 +39,8 @@
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-prettier": "^5.1.2",
     "eslint-plugin-vue": "^9.19.2",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
     "prettier": "^3.1.1",
     "sass": "^1.69.6",
     "typescript": "^5.0.0",
