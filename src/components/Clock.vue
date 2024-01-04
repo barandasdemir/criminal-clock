@@ -15,8 +15,8 @@
       <circle
         v-for="i in 12"
         :key="`outer-${i}`"
-        :cx="width / 2 + radius * 1.1 * Math.cos(i * 30 * (Math.PI / 180))"
-        :cy="height / 2 + radius * 1.1 * Math.sin(i * 30 * (Math.PI / 180))"
+        :cx="width / 2 + radius * 1.065 * Math.cos(i * 30 * (Math.PI / 180))"
+        :cy="height / 2 + radius * 1.065 * Math.sin(i * 30 * (Math.PI / 180))"
         :r="dotRadius"
         class="outer"
       />
@@ -37,7 +37,8 @@ import type { Digit } from '@/types';
 
 const { width, height } = useWindowSize();
 
-const radius = computed(() => (width.value > height.value ? height.value : width.value) / 2.3);
+const scale = ref(2.4);
+const radius = computed(() => (width.value > height.value ? height.value : width.value) / scale.value);
 const dotRadius = computed(() => radius.value / 64);
 const dotSize = computed(() => `${dotRadius.value * 2}px`);
 
