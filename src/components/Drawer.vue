@@ -56,14 +56,24 @@
 <script setup lang="ts">
 const props = defineProps<{ show: boolean }>();
 
-const visible = ref(false);
 const theme = useTheme();
+const color = useStorage('cc-color', '#ED0104', localStorage, { mergeDefaults: true });
+
+const visible = ref(false);
 
 function hide() {
   visible.value = false;
 }
 
 whenever(() => !props.show, hide);
+
+watchDebounced(
+  () => theme.current.value.colors.primary,
+  (newColor) => {
+    color.value = newColor;
+  },
+  { debounce: 500, maxWait: 2000 },
+);
 </script>
 
 <style lang="scss" scoped>

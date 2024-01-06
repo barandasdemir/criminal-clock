@@ -10,6 +10,14 @@
 <script setup lang="ts">
 const mainEl = ref<HTMLElement>();
 const inFocus = useElementHover(mainEl);
+
+const theme = useTheme();
+const color = useStorage('cc-color', '#ED0104', localStorage, { mergeDefaults: true });
+
+onMounted(() => {
+  theme.themes.value.dark.colors.primary = color.value;
+  theme.themes.value.light.colors.primary = color.value;
+});
 </script>
 
 <style lang="scss">
