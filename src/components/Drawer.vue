@@ -10,7 +10,7 @@
       <v-spacer />
 
       <div class="mb-10">
-        <v-img src="/android-chrome-192x192.png" />
+        <v-img src="/android-chrome-192x192.png" max-height="256" />
       </div>
 
       <p class="title text-overline mb-10">Criminal Clock</p>
@@ -52,7 +52,7 @@ function hide() {
   visible.value = false;
 }
 
-whenever(() => !props.show, hide);
+// whenever(() => !props.show, hide);
 </script>
 
 <style lang="scss" scoped>
