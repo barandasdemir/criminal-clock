@@ -63,7 +63,7 @@ function hide() {
   visible.value = false;
 }
 
-// whenever(() => !props.show, hide);
+whenever(() => !props.show, hide);
 </script>
 
 <style lang="scss" scoped>
