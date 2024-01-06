@@ -18,7 +18,7 @@
       <p class="text-center font-weight-light">Inspired by the show</p>
       <strong class="text-center text-subtitle-1 mb-10">Criminal UK/Germany/Spain/France</strong>
 
-      <v-menu location="start" :close-on-content-click="false" contained>
+      <v-menu v-model="colorMenu" location="start" :close-on-content-click="false" contained>
         <template #activator="{ props: menuProps }">
           <v-btn color="primary" v-bind="menuProps"> Change Color </v-btn>
         </template>
@@ -60,9 +60,11 @@ const theme = useTheme();
 const color = useStorage('cc-color', '#ED0104', localStorage, { mergeDefaults: true });
 
 const visible = ref(false);
+const colorMenu = ref(false);
 
 function hide() {
   visible.value = false;
+  colorMenu.value = false;
 }
 
 whenever(() => !props.show, hide);
