@@ -51,7 +51,7 @@ export default defineConfig({
     AutoImport({
       dts: 'src/types/generated/auto-imports.d.ts',
       dirs: ['src/composables/**', 'src/stores/**', 'src/utils/**'],
-      imports: ['vue', 'pinia', '@vueuse/core'],
+      imports: ['vue', 'pinia', '@vueuse/core', { vuetify: ['useTheme'] }],
       vueTemplate: true,
       eslintrc: {
         enabled: true,
