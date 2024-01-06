@@ -15,8 +15,8 @@
       <circle
         v-for="i in 12"
         :key="`outer-${i}`"
-        :cx="width / 2 + radius * 1.065 * Math.cos(i * 30 * (Math.PI / 180))"
-        :cy="height / 2 + radius * 1.065 * Math.sin(i * 30 * (Math.PI / 180))"
+        :cx="width / 2 + radius * 1.075 * Math.cos(i * 30 * (Math.PI / 180))"
+        :cy="height / 2 + radius * 1.075 * Math.sin(i * 30 * (Math.PI / 180))"
         :r="dotRadius"
         class="outer"
       />
@@ -39,7 +39,7 @@ const { width, height } = useWindowSize();
 
 const scale = ref(2.4);
 const radius = computed(() => (width.value > height.value ? height.value : width.value) / scale.value);
-const dotRadius = computed(() => radius.value / 64);
+const dotRadius = computed(() => radius.value / 46);
 const dotSize = computed(() => `${dotRadius.value * 2}px`);
 
 const now = useNow();
@@ -84,7 +84,7 @@ circle {
 
 .seperator {
   @include flex-center;
-  @include margin-x(calc(v-bind(dotSize) * 5));
+  @include margin-x(calc(v-bind(dotSize) * 3.75));
 
   flex-direction: column;
   width: v-bind(dotSize);
