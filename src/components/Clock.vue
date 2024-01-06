@@ -62,10 +62,10 @@ useTitle(titleTime, { titleTemplate: '%s | Criminal Clock' });
 }
 
 circle {
-  fill: rgba(color(primary), 0.1);
+  fill: rgba(var(--v-theme-primary), 0.1);
 
   &.outer {
-    fill: color(primary);
+    fill: rgb(var(--v-theme-primary));
   }
 }
 
@@ -96,17 +96,17 @@ circle {
     display: block;
     width: v-bind(dotSize);
     height: v-bind(dotSize);
-    background-color: rgba(color(primary), 0.1);
+    background-color: rgba(var(--v-theme-primary), 0.1);
     border-radius: 50%;
   }
 }
 
 .active {
-  fill: color(primary);
+  fill: rgb(var(--v-theme-primary));
 
   &::before,
   &::after {
-    background-color: color(primary);
+    background-color: rgb(var(--v-theme-primary));
   }
 }
 </style>

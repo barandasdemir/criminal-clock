@@ -33,9 +33,3 @@ const segmentMap = {
 
 const segments = computed(() => segmentMap[value.value]);
 </script>
-
-<style lang="scss" scoped>
-circle {
-  fill: color(primary);
-}
-</style>

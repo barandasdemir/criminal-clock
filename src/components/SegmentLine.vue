@@ -28,10 +28,10 @@ const props = defineProps<SegmentLineProps>();
 
 <style lang="scss" scoped>
 circle {
-  fill: rgba(color(primary), 0.1);
+  fill: rgba(var(--v-theme-primary), 0.1);
 
   &.active {
-    fill: color(primary);
+    fill: rgb(var(--v-theme-primary));
   }
 }
 </style>

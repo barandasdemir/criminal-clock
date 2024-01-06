@@ -32,7 +32,7 @@
 }
 
 .heart {
-  fill: color(primary);
+  fill: rgb(var(--v-theme-primary));
   transform-origin: center;
   animation: heartbeat 1.3s ease infinite 0s;
 }
