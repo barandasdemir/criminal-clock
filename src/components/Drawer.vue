@@ -25,6 +25,7 @@
 
         <v-card class="pa-3" border>
           <v-color-picker v-model="theme.current.value.colors.primary" :modes="['hex']" mode="hex" />
+          <v-btn variant="tonal" block @click="resetColor">Reset</v-btn>
         </v-card>
       </v-menu>
 
@@ -65,6 +66,11 @@ const colorMenu = ref(false);
 function hide() {
   visible.value = false;
   colorMenu.value = false;
+}
+
+function resetColor() {
+  theme.themes.value.dark.colors.primary = '#ED0104';
+  theme.themes.value.light.colors.primary = '#ED0104';
 }
 
 whenever(() => !props.show, hide);
