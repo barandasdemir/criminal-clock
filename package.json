@@ -1,7 +1,7 @@
 {
   "name": "criminal-clock",
   "version": "1.0.0",
-  "author": "Baran D. <0xbaran@proton.me> (https://fledra.dev)",
+  "author": "Baran D. <baran@fledra.dev> (https://fledra.dev)",
   "type": "module",
   "contributors": [],
   "engines": {
