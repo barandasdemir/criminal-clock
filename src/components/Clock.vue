@@ -83,8 +83,11 @@ circle {
 }
 
 .seperator {
-  @include flex-center;
-  @include margin-x(calc(v-bind(dotSize) * 3.75));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 calc(v-bind(dotSize) * 3.75 * 1px);
 
   flex-direction: column;
   width: v-bind(dotSize);

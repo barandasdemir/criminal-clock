@@ -33,7 +33,7 @@ onMounted(() => {
   }
 
   ::-webkit-scrollbar-thumb {
-    background: rgba(color(primary), 0.7);
+    background: rgba(var(--v-theme-primary), 0.7);
     border: 4px solid transparent;
     border-radius: 8px;
   }
