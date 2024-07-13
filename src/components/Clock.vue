@@ -1,46 +1,74 @@
 <template>
   <div class="clock-wrapper">
-    <svg :width="width" :height="height">
+    <svg width="100dvw" height="100dvh" viewBox="0 0 512 512">
       <g id="inner">
         <circle
-          v-for="(_, i) in 60"
+          v-for="(point, i) in clock.inner"
           :key="`inner-${i}`"
-          :cx="width / 2 + radius * Math.cos(i * 6 * (Math.PI / 180))"
-          :cy="height / 2 + radius * Math.sin(i * 6 * (Math.PI / 180))"
-          :r="dotRadius"
+          :cx="point.x"
+          :cy="point.y"
+          :r="radius"
           :class="{ active: time.second >= i }"
         />
       </g>
 
-      <circle
-        v-for="i in 12"
-        :key="`outer-${i}`"
-        :cx="width / 2 + radius * 1.075 * Math.cos(i * 30 * (Math.PI / 180))"
-        :cy="height / 2 + radius * 1.075 * Math.sin(i * 30 * (Math.PI / 180))"
-        :r="dotRadius"
-        class="outer"
-      />
+      <g id="outer">
+        <circle
+          v-for="(point, i) in clock.outer"
+          :key="`inner-${i}`"
+          :cx="point.x"
+          :cy="point.y"
+          :r="radius"
+          class="active"
+        />
+      </g>
+
+      <g id="segments">
+        <Segment
+          v-for="(seg, i) in time.hour"
+          :key="`hour-${i}`"
+          :value="seg"
+          :radius="radius * 0.8"
+          :x="100 + 75 * i"
+          :y="212.5"
+        />
+
+        <g id="seperator" :class="{ active: time.millis <= 500 }">
+          <circle cx="256" cy="241" :r="radius"></circle>
+          <circle cx="256" cy="271" :r="radius"></circle>
+        </g>
+
+        <Segment
+          v-for="(seg, i) in time.minute"
+          :key="`min-${i}`"
+          :value="seg"
+          :radius="radius * 0.8"
+          :x="290 + 75 * i"
+          :y="212.5"
+        />
+      </g>
     </svg>
-
-    <div class="segments">
-      <Segment v-for="(seg, i) in time.hour" :key="`hour-${i}`" :value="seg" :radius="dotRadius" />
-
-      <div class="seperator" :class="{ active: time.millis <= 500 }"></div>
-
-      <Segment v-for="(seg, i) in time.minute" :key="`min-${i}`" :value="seg" :radius="dotRadius" />
-    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import type { Digit } from '@/types';
 
-const { width, height } = useWindowSize();
+function generatePoints(r: number, amount: number, scale = 1) {
+  return Array.from({ length: amount }, (_, i) => {
+    const angle = ((Math.PI * 2) / amount) * i;
+    return {
+      x: r + r * scale * Math.cos(angle),
+      y: r + r * scale * Math.sin(angle),
+    };
+  });
+}
 
-const scale = ref(2.4);
-const radius = computed(() => (width.value > height.value ? height.value : width.value) / scale.value);
-const dotRadius = computed(() => radius.value / 46);
-const dotSize = computed(() => `${dotRadius.value * 2}px`);
+const radius = 4.5;
+const clock = {
+  inner: generatePoints(256, 60, 0.85),
+  outer: generatePoints(256, 12, 0.91),
+};
 
 const now = useNow();
 const titleTime = useDateFormat(now, 'HH:mm:ss');
@@ -56,60 +84,23 @@ const time = computed(() => ({
 useTitle(titleTime, { titleTemplate: '%s | Criminal Clock' });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .clock-wrapper {
   position: relative;
 }
 
-circle {
-  fill: rgba(var(--v-theme-primary), 0.1);
-
-  &.outer {
-    fill: rgb(var(--v-theme-primary));
-  }
-}
-
-#inner {
+#inner,
+#outer {
   transform: rotate(270deg);
   transform-origin: center center;
 }
 
-.segments {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-}
+g {
+  fill: rgba(var(--v-theme-primary), 0.05);
 
-.seperator {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0 calc(v-bind(dotSize) * 3.75 * 1px);
-
-  flex-direction: column;
-  width: v-bind(dotSize);
-  gap: 25%;
-
-  &::before,
-  &::after {
-    content: '';
-    display: block;
-    width: v-bind(dotSize);
-    height: v-bind(dotSize);
-    background-color: rgba(var(--v-theme-primary), 0.1);
-    border-radius: 50%;
-  }
-}
-
-.active {
-  fill: rgb(var(--v-theme-primary));
-
-  &::before,
-  &::after {
-    background-color: rgb(var(--v-theme-primary));
+  &.active,
+  circle.active {
+    fill: rgb(var(--v-theme-primary));
   }
 }
 </style>
